@@ -1,4 +1,4 @@
-/* syslog.c */
+/* gpucompute.c */
 #include "erl_nif.h"
 #include <stdio.h>
 #include <string.h>
