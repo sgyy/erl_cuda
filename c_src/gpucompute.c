@@ -31,6 +31,8 @@ static ERL_NIF_TERM gpu_compute(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
 
   int ret  = system(appstr);
 
+  printf("ret %d\n", ret);
+
   return enif_make_int(env, ret);
 }
 static ErlNifFunc nif_funcs[] =

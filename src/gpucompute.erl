@@ -36,7 +36,7 @@ init([]) ->
 
 handle_call({compute, A, B}, _From, #state{} = State) ->
   	Reply = gpu_compute(A, B),
-	io:format("~p~n", [Reply]),
+	io:format("compute result ~p~n", [Reply]),
   	{reply, ok, State}.
 
 handle_cast(_Msg, State) ->
