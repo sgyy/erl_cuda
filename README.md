@@ -21,7 +21,7 @@ rebar -pa ebin
     Eshell V5.10.1  (abort with ^G)
     1> application:start(gpucompute).
     ok
-    2> gpucompute:compute(2,7).
-    result = 9
+    2> gpucompute:compute(2,3).
+    "5"
     ok
   ```
