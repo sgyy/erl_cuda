@@ -41,7 +41,7 @@ int main( int argc, char *argv[] ) {
     // copy device result to host result in host memory
     cudaMemcpy( &c, d_c, size, cudaMemcpyDeviceToHost);
 
-    printf("result = %d\n", c);
+    printf("%d", c);
 
     //free device memory
     cudaFree(d_a);
@@ -49,6 +49,6 @@ int main( int argc, char *argv[] ) {
     cudaFree(d_c);
 
     cudaDeviceReset();
-
-    return c;
+    
+    return 0;
 }

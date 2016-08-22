@@ -28,12 +28,22 @@ static ERL_NIF_TERM gpu_compute(ErlNifEnv* env, int argc, const ERL_NIF_TERM arg
   strcat(appstr, astr);
   strcat(appstr, " ");
   strcat(appstr, bstr);
+  
+  FILE *fp;
+  fp = popen(appstr, "r");
+  //int ret  = system(appstr);
 
-  int ret  = system(appstr);
+  if (fp == NULL) {
+    printf("Failed to run command\n" );
+    exit(1);
+  }
+  
+  char ret[15] = "0";
+  while (fgets(ret, sizeof(ret)-1, fp) != NULL) {
+    printf("ret %s", ret);
+  }
 
-  printf("ret %d\n", ret);
-
-  return enif_make_int(env, ret);
+  return enif_make_string(env, ret, ERL_NIF_LATIN1);
 }
 static ErlNifFunc nif_funcs[] =
 {
