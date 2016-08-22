@@ -1,7 +1,5 @@
 ## GPU Compute
 
----
-
 using erlang/otp to publish data on GPU(CUDA) to compute
 
 * compile:
@@ -17,3 +15,7 @@ using erlang/otp to publish data on GPU(CUDA) to compute
 `application:start(gpucompute).`
 
 `gpucompute:compute(2,5).`
+
+* cuda compile
+
+`make`
