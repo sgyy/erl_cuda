@@ -1,6 +1,5 @@
 
 -module(gpucompute_sup).
-
 -behaviour(supervisor).
 
 %% API
@@ -16,12 +15,12 @@
 %% API functions
 %% ===================================================================
 -spec start_link() -> ok.
-start_link() ->
+start_link(State) ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 -spec start_compute_worker() -> {ok, pid()}.
-start_compute_worker() ->
-	Id         = erlang:now(),
+start_compute_worker(State) ->
+	Id         = State#state.partition,
 	StartFunc  = {gpucompute, start_link, []},
 	Restart    = permanent,
 	Shutdown   = 2000,
