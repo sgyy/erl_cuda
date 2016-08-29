@@ -10,7 +10,6 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    exec:start([]),
     gpucompute_sup:start_link().
 
 

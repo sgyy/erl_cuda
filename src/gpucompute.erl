@@ -41,7 +41,12 @@ init([]) ->
 
 -spec handle_call({atom(), integer(), integer()}, term(), state()) -> {reply, ok, state()}.
 handle_call({compute, A, B}, _From, #state{} = State) ->
-  	 f(Pid), f(OsPid), {ok, Pid, OsPid} = exec:run("/home/llin/dev/erl_cuda/cuda/simadd 1 2", [{stdout, fun(Stream,OsPid,Data) -> io:format("Got ~w from ~w: ~p\n", [Stream,OsPid,Data]), {reply, ok, Data}. end}]).  
+  	 exec:run("./priv/simadd 1 2", [{stdout, fun(Stream,OsPid,Data) -> io:format("Got ~w from ~w: ~p\n", [Stream,OsPid,Data]) end}]),
+	 {reply, ok, State}.
+ % 	io:format("Got ~p ~p\n", [A, B]),
+ % 	Reply = exec:run("./priv/simadd 1 2", [stdout, sync]),
+ % 	{reply, ok, Reply}.
+
 
 -spec handle_cast(term(), state()) -> {atom(), state()}.
 handle_cast(_Msg, State) ->
@@ -59,6 +64,6 @@ terminate(_Reason, _State) ->
 code_change(_, _, _) ->
 	ok.
 
--spec gpu_compute(integer(), integer()) -> {error, nif_not_loaded}.
-gpu_compute(_A, _B) ->
-    {error, nif_not_loaded}.
+% -spec gpu_compute(integer(), integer()) -> {error, nif_not_loaded}.
+% gpu_compute(_A, _B) ->
+%     {error, nif_not_loaded}.

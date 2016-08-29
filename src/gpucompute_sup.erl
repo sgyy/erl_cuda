@@ -15,20 +15,19 @@
 %% API functions
 %% ===================================================================
 -spec start_link() -> ok.
-start_link(State) ->
+start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 -spec start_compute_worker() -> {ok, pid()}.
-start_compute_worker(State) ->
-	Id         = State#state.partition,
+start_compute_worker() ->
+	Id         = erlang:now(),
 	StartFunc  = {gpucompute, start_link, []},
 	Restart    = permanent,
 	Shutdown   = 2000,
 	Type       = worker,
 	Modules    = [gpucompute],
     ChildSpec  = {Id, StartFunc, Restart, Shutdown, Type, Modules},
-    {ok, Pid}  = supervisor:start_child(?MODULE, ChildSpec),
-    {ok, Pid}.
+    {ok, Pid}  = supervisor:start_child(?MODULE, ChildSpec).
 
 %% ===================================================================
 %% Supervisor callbacks

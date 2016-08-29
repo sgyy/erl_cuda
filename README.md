@@ -25,3 +25,19 @@ rebar -pa ebin
     "5"
     ok
   ```
+
+
+ ```
+ 1> application:start(gpucompute).
+ ok
+ 2> gpucompute_sup:start_link().    
+ {ok,<0.38.0>}
+ 3> {ok, Pid} = gpucompute_sup:start_compute_worker().
+ {ok,<0.41.0>}
+ 4> gpucompute:compute(Pid, 1, 2).
+ "5"
+ ok
+
+ ```
+
+ the final task: move the riak_pipe send output call in the child process
