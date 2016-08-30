@@ -14,7 +14,7 @@ using erlang/otp to publish data on GPU(CUDA) to compute
 
 * run
 
-> ```
+```
 erl -pa deps/*/ebin ebin
 
 1>  application:start(gpucompute).
@@ -40,7 +40,6 @@ ok
  4> gpucompute:compute(Pid, 1, 2).
  "5"
  ok
-
  ```
 
  the final task: move the riak_pipe send output call in the child process
