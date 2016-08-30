@@ -4,7 +4,7 @@ using erlang/otp to publish data on GPU(CUDA) to compute
 
 * compile:
 
-> `rebar compile`
+> `./rebar get-deps compile`
 
 * cuda compile
 
@@ -15,15 +15,18 @@ using erlang/otp to publish data on GPU(CUDA) to compute
 * run
 
 > ```
-rebar -pa ebin
+erl -pa deps/*/ebin ebin
 
-    Erlang R16B (erts-5.10.1) [source] [64-bit] [smp:8:8] [async-threads:10] [hipe] [kernel-poll:false]
-    Eshell V5.10.1  (abort with ^G)
-    1> application:start(gpucompute).
-    ok
-    2> gpucompute:compute(2,3).
-    "5"
-    ok
+1>  application:start(gpucompute).
+ok
+2> application:start(erlexec).
+ok
+3> {ok, Pid} = gpucompute_sup:start_compute_worker().           
+{ok,<0.46.0>}
+4> gpucompute:compute(Pid, 1, 2).
+ok
+5> Got stdout from 1604: <<"3">>
+
   ```
 
 
