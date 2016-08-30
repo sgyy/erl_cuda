@@ -2,3 +2,11 @@ priv/*
 *.swp
 c_src/*.o
 *.beam
+.eunit
+deps
+*.o
+erl_crash.dump
+ebin
+rel/example_project
+.concrete/DEV_MODE
+.rebar
